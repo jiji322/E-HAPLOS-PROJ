@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-HAPLOS PROJECT - Medical Device Interface</title>
+    <meta name="description" content="E-HAPLOS PROJECT - Advanced medical device simulation for Force-Sensing Resistors (FSR) and Electrical Impedance Spectroscopy (EIS) analysis">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="main-title">
+                E-HAPLOS <span class="gradient-text">PROJECT</span>
+            </h1>
+            <p class="tagline">Gawa ng Filipino Para sa Filipino</p>
+            <p class="byline">By Ralph Jirell</p>
+        </div>
+
+        <!-- Medical Disclaimer -->
+        <div class="disclaimer-banner">
+            <div class="disclaimer-content">
+                <span class="warning-icon">⚠️</span>
+                <span class="disclaimer-text">
+                    MEDICAL DEVICE - FOR RESEARCH PURPOSES ONLY - NOT FOR CLINICAL DIAGNOSIS
+                </span>
+                <span class="warning-icon">⚠️</span>
+            </div>
+        </div>
+
+        <!-- Patient Information -->
+        <div class="medical-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">👤</span>
+                    Patient Information
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="patientName" class="input-label">Patient Name</label>
+                        <input type="text" id="patientName" class="medical-input" placeholder="Enter patient name" data-testid="input-patient-name">
+                    </div>
+                    <div class="input-group">
+                        <label for="patientAge" class="input-label">Patient Age</label>
+                        <input type="number" id="patientAge" class="medical-input" placeholder="Enter age" min="1" max="120" data-testid="input-patient-age">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Device Connection -->
+        <div class="medical-card">
+            <div class="card-content connection-section">
+                <button id="connectionBtn" class="medical-button" data-testid="button-connect-device">
+                    <span class="btn-icon">📶</span>
+                    <span class="btn-text">Connect E-HAPLOS Device</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Indicators -->
+        <div class="medical-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">📡</span>
+                    System Status
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div id="bluetoothStatus" class="status-indicator status-inactive"></div>
+                        <span class="status-label">Bluetooth</span>
+                    </div>
+                    <div class="status-item">
+                        <div id="fsrStatus" class="status-indicator status-inactive"></div>
+                        <span class="status-label">FSR Sensors</span>
+                    </div>
+                    <div class="status-item">
+                        <div id="eisStatus" class="status-indicator status-inactive"></div>
+                        <span class="status-label">EIS Readings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sensor Data Panels -->
+        <div class="sensor-panels">
+            <!-- FSR Data Panel -->
+            <div class="medical-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="icon">⚖️</span>
+                        Force-Sensing Resistors (FSR)
+                    </h2>
+                </div>
+                <div class="card-content">
+                    <div class="data-item">
+                        <span class="data-label">FSR 1 (g)</span>
+                        <span id="fsr1Value" class="data-value" data-testid="text-fsr1-value">--</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">FSR 2 (g)</span>
+                        <span id="fsr2Value" class="data-value" data-testid="text-fsr2-value">--</span>
+                    </div>
+                    <div class="data-divider"></div>
+                    <div class="data-item">
+                        <span class="data-label-main">Total Pressure (kg)</span>
+                        <span id="totalPressure" class="data-value-main" data-testid="text-total-pressure">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EIS Data Panel -->
+            <div class="medical-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="icon">⚡</span>
+                        Electrical Impedance Spectroscopy (EIS)
+                    </h2>
+                </div>
+                <div class="card-content">
+                    <div class="data-item">
+                        <span class="data-label">Z Real (Ohms)</span>
+                        <span id="zRealValue" class="data-value" data-testid="text-z-real">--</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Z Imaginary (Ohms)</span>
+                        <span id="zImaginaryValue" class="data-value" data-testid="text-z-imaginary">--</span>
+                    </div>
+                    <div class="data-divider"></div>
+                    <div class="data-item">
+                        <span class="data-label-main">Magnitude (Ohms)</span>
+                        <span id="magnitudeValue" class="data-value-main" data-testid="text-magnitude">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-Time Graph -->
+        <div class="medical-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">📈</span>
+                    Real-Time Frequency vs. Impedance Magnitude
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="chart-container" data-testid="chart-impedance">
+                    <canvas id="impedanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagnosis Section -->
+        <div class="medical-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">🩺</span>
+                    Diagnosis & Analysis
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="diagnosis-box">
+                    <p id="diagnosisText" class="diagnosis-text" data-testid="text-diagnosis">
+                        Device not connected. Please connect E-HAPLOS device to begin analysis.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Disclaimer -->
+        <div class="footer-disclaimer">
+            <p>This device is for research and educational purposes only. Not intended for clinical diagnosis or treatment decisions.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

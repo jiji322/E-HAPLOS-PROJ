@@ -1,0 +1,68 @@
+Prompt for Replit AI
+Please create a three-file static website for a project called "E-HAPLOS PROJECT." The website's user interface and functionality should be based on the provided ESP32 code. The website should be easily deployed to GitHub Pages and consist of the following files:
+
+index.html: The main page structure and UI elements.
+
+style.css: The CSS for styling, using a clean, modern, and dark medical theme.
+
+script.js: The JavaScript logic for all interactions, data display, and graphing.
+
+Specific Requirements:
+User Interface (index.html & style.css):
+
+Title and Branding: The page title should be "E-HAPLOS PROJECT" with the tagline "Gawa ng Filipino Para sa Filipino" and a byline "By Ralph Jirell."
+
+Patient Information: Add input fields for "Patient Name" and "Patient Age."
+
+Header: Include a medical disclaimer section with a prominent warning icon.
+
+Main Layout: Use a centralized container with a dark background for the content.
+
+Controls: Add a single button labeled "Connect E-HAPLOS Device."
+
+Status Indicators: Create a section with status indicators (using colored circles) for "Bluetooth," "FSR Sensors," and "EIS Readings." The default color should be gray.
+
+Sensor Data Panels:
+
+A panel for Force-Sensing Resistors (FSR) displaying values for "FSR 1 (g)," "FSR 2 (g)," and "Total Pressure (kg)."
+
+A panel for Electrical Impedance Spectroscopy (EIS) displaying values for "Z Real (Ohms)," "Z Imaginary (Ohms)," and "Magnitude (Ohms)."
+
+Real-Time Graph: Include a large chart area to display a real-time line graph of "Frequency vs. Impedance Magnitude." The graph should have dynamic labels and be able to update as new data points are received.
+
+Diagnosis: A dedicated section to display a text-based diagnosis or status messages, such as "EIS is calibrating in the air..."
+
+Footer: A small disclaimer at the bottom.
+
+Functionality (script.js):
+Initialization: All status indicators should be gray, and all sensor readings should display a placeholder like "--" or "0.00." The patient name and age fields should be empty.
+
+Connection Logic:
+
+The "Connect" button should simulate a connection process. When clicked, it should change the button text to "Connecting..." for a few seconds.
+
+After the simulated connection, change the button text to "Disconnect Device" and change the Bluetooth status indicator to green.
+
+EIS Calibration Simulation:
+
+For the first 5 seconds after connection, the diagnosis section should display "EIS is calibrating in the air...".
+
+During this time, the "EIS Readings" status indicator should be yellow or a similar color to indicate a temporary state, and the EIS values and graph should remain static.
+
+Data Simulation & Graphing:
+
+After calibration, the script should start a loop that simulates the frequency sweep from the ESP32 code.
+
+For each frequency in the sweep, generate a simulated Z Real, Z Imaginary, and Magnitude value.
+
+Update the EIS data panel with these new values.
+
+Crucially, add each new Magnitude value to the real-time graph, plotting it against its corresponding frequency. The graph should be able to smoothly plot new data points as they are "received."
+
+If both FSR 1 and FSR 2 readings are above a certain threshold (e.g., > 10 grams), the FSR and EIS status indicators should turn green. If not, they should turn red or remain gray, and the diagnosis should be "Insufficient contact pressure."
+
+Based on the simulated EIS readings: If the readings fall within a certain range (e.g., low impedance magnitude), the diagnosis should display "Normal soft tissue." If the readings are high, it should display "Possible dense mass."
+
+Disconnection Logic:
+
+When the "Disconnect" button is clicked, all status indicators should turn gray, all sensor readings should reset to "--", the graph should clear, and the button text should change back to "Connect E-HAPLOS Device."
